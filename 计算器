@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>比特币利润计算器</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+        }
+        label, input, button {
+            display: block;
+            margin: 10px 0;
+        }
+        input, button {
+            padding: 10px;
+            font-size: 16px;
+        }
+    </style>
+</head>
+<body>
+    <h1>比特币利润计算器</h1>
+    <form id="profit-form">
+        <label for="buy-price">买入价格（美元）:</label>
+        <input type="number" id="buy-price" required>
+
+        <label for="quantity">买入数量:</label>
+        <input type="number" id="quantity" required>
+
+        <label for="sell-price">卖出价格（美元）:</label>
+        <input type="number" id="sell-price" required>
+
+        <button type="button" onclick="calculateProfit()">计算利润</button>
+    </form>
+
+    <h2 id="profit-result">利润: </h2>
+
+    <script>
+        function calculateProfit() {
+            const buyPrice = parseFloat(document.getElementById('buy-price').value);
+            const quantity = parseFloat(document.getElementById('quantity').value);
+            const sellPrice = parseFloat(document.getElementById('sell-price').value);
+
+            if (isNaN(buyPrice) || isNaN(quantity) || isNaN(sellPrice)) {
+                alert('请确保所有输入都是有效的数字');
+                return;
+            }
+
+            const profit = (sellPrice - buyPrice) * quantity;
+            document.getElementById('profit-result').innerText = `利润: ${profit.toFixed(2)} 美元`;
+        }
+    </script>
+</body>
+</html>
